@@ -20,11 +20,11 @@ resource "aws_ecs_service" "service" {
     subnets = [aws_subnet.sn1.id, aws_subnet.sn2.id, aws_subnet.sn3.id]
   }
 
-#   load_balancer {
-#     target_group_arn = aws_alb_target_group.tg.arn
-#     container_port = 443
-#     container_name = "arc-api"
-#   }
+  load_balancer {
+    target_group_arn = aws_alb_target_group.albtg.arn
+    container_port = 443
+    container_name = "arc-api"
+  }
 
 }
 
