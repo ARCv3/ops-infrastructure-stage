@@ -10,6 +10,31 @@ resource "aws_ecs_cluster" "ecs3" {
     name = "unity-cluster"
 }
 
+resource "aws_ecs_cluster_capacity_providers" "ecs_providers" {
+    cluster_name = aws_ecs_cluster.ecs.name
+    capacity_providers = ["FARGATE_SPOT"]
+    default_capacity_provider_strategy {
+        capacity_provider = "FARGATE_SPOT"
+    } 
+}
+
+resource "aws_ecs_cluster_capacity_providers" "ecs_providers2" {
+    cluster_name = aws_ecs_cluster.ecs2.name
+    capacity_providers = ["FARGATE_SPOT"]
+
+    default_capacity_provider_strategy {
+        capacity_provider = "FARGATE_SPOT"
+    } 
+}
+
+resource "aws_ecs_cluster_capacity_providers" "ecs_providers3" {
+    cluster_name = aws_ecs_cluster.ecs3.name
+    capacity_providers = ["FARGATE_SPOT"]
+    default_capacity_provider_strategy {
+        capacity_provider = "FARGATE_SPOT"
+    } 
+}
+
 resource "aws_ecs_service" "service" {
   name = "arc-api-service"
 
